@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    slide show example
+  </title>
+  <style>
+  
+#slideCon { position: relative;  width:1200px; height:600px; margin:auto; overflow: hidden;}
+.mySlides { position: absolute; width:100%;height:600px; animation-duration:2s; animation-timing-function:cubic-bezier(.0,.6,.6,.7);background-position: left top; cursor:pointer;
+}
+.mySlides a{display: block;}
+#sl1{ background-image: url("p1.jpg") }
+#sl2{ background-image: url("p2.jpg") }
+#sl3{ background-image: url("p3.jpg") }
+#sl4{ background-image: url("p4.jpg") }
+#sl5{ background-image: url("p5.jpg") }
+#sl6{ background-image: url("p6.jpg") }
+
+.prev,.next { cursor: pointer;
+  position: absolute; top: 300px; width: auto; padding: 16px; margin-top: -50px; color: white; font-size: 40px; border-radius: 0 3px 3px 0; user-select: none; -webkit-user-select: none; z-index: 35;
+}
+
+.next { right: 0; border-radius: 3px 0 0 3px; }
+.prev:hover, .next:hover { cursor:pointer; background-color: rgba(0, 0, 0, 0.8); }
+
+  
+@keyframes example {
+    from {background-size: 100%;}
+    to {background-size: 110%;}
+}
+
+@keyframes example2 {
+ from {background-size: 100%;}
+    to {background-size: 110%;}
+}
+
+@keyframes example3 {
+   from {background-size: 100%;}
+    to {background-size: 110%;}
+}
+
+@keyframes example4 {
+   from {background-size: 100%;}
+    to {background-size: 110%;}
+}
+
+</style>
+</head>
+<body>
+  
+<div id="slideCon">
+  <div class="mySlides" id="sl1"><a href="#"> </a></div>
+  <div class="mySlides" id="sl2"><a href="#"> </a></div>
+  <div class="mySlides" id="sl3"><a href="#"> </a></div>
+  <div class="mySlides" id="sl4"><a href="#"> </a></div>
+  <div class="mySlides" id="sl5"><a href="#"> </a></div>
+  <div class="mySlides" id="sl6"><a href="#"> </a></div>
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+<script>
+var slideIndex = 1;
+var prevIndex = 6;
+showSlides(slideIndex);
+var slideTimer = setInterval(plusS, 2000);
+
+(function(){
+      slideCon.onmouseover = function(){
+        console.log("over");
+        clearInterval(slideTimer);
+      }
+      slideCon.onmouseout = function(){
+        console.log("out");
+        slideTimer = setInterval(plusS, 2000);
+      }
+})();
+
+function plusS() { plusSlides(1); }
+function plusSlides(n) { showSlides(slideIndex += n);}
+function currentSlide(n) { showSlides(slideIndex = n);}
+function showSlides(n) {
+  var i=0, slides = document.getElementsByClassName("mySlides");
+  
+  if (n > slides.length) {slideIndex = 1};
+  if (n < 1) {slideIndex = slides.length};
+  
+    for(i=0; i< slides.length; i++){
+      slides[i].style.zIndex = "29";
+    }
+    
+    slides[slideIndex - 1].style.zIndex = "31";
+    slides[prevIndex - 1].style.zIndex = "30";
+
+    if(slideIndex > prevIndex){
+      slides[slideIndex - 1].style.animationName = "example";
+      slides[prevIndex - 1].style.animationName = "example4";
+    }else{
+      slides[slideIndex - 1].style.animationName = "example2";
+      slides[prevIndex - 1].style.animationName = "example3";
+    }   
+  prevIndex = slideIndex;
+
+}
+</script>
+
+</body>
+</html>
+
